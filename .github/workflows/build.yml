@@ -12,7 +12,7 @@ jobs:
       uses: actions/setup-java@v5
       with:
         java-version: '17'
-        distribution: 'adopt'
+        distribution: 'temurin'
     - name: Run tests
       run: |
         git clone https://github.com/gitbucket/gitbucket.git
