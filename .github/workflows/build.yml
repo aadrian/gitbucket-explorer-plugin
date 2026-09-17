@@ -20,6 +20,10 @@ jobs:
         sbt publishLocal
         cd ../
         sbt test
+    - name: Run JS tests
+      run: |
+        npm install
+        npm test
     - name: Assembly
       run: |
         npm install
