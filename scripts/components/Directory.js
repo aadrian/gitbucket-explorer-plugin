@@ -45,7 +45,11 @@ export default class Directory extends React.Component {
           if (err) {
             return;
           }
-          this.setState({ children: JSON.parse(res.text) });
+          try {
+            this.setState({ children: JSON.parse(res.text) });
+          } catch (e) {
+            return;
+          }
         });
     }
   }
