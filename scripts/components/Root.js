@@ -5,10 +5,14 @@ import Directory from './Directory';
 export default class Root extends Directory {
 
   componentWillMount() {
+    const logo = document.querySelector('header.main-header a.logo');
+    if (!logo) {
+      return;
+    }
     // obtain repository URI
     // - localhost:8080/owner/repo -> /owner/repo
     // - localhost:8080/gitbucket/owner/repo -> /owner/repo
-    const baseUrl = document.querySelector('header.main-header a.logo').getAttribute('href').replace(`${document.location.protocol}//${document.location.host}`, '');
+    const baseUrl = logo.getAttribute('href').replace(`${document.location.protocol}//${document.location.host}`, '');
     const relPath = document.location.pathname.replace(baseUrl, '');
     let rootPath;
     let branch;
