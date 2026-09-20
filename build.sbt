@@ -7,7 +7,7 @@ gitbucketVersion := "4.47.1"
 scalacOptions := Seq("-deprecation", "-feature", "-language:postfixOps")
 javacOptions ++= Seq("-target", "8", "-source", "8")
 
-val ScalatraVersion = "3.1.2"
+val ScalatraVersion = "3.2.1"
 
 libraryDependencies ++= Seq(
   "org.scalatest" %% "scalatest-funsuite" % "3.2.20" % "test",
