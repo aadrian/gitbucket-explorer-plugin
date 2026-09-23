@@ -12,7 +12,7 @@ val ScalatraVersion = "3.2.1"
 libraryDependencies ++= Seq(
   "org.scalatest" %% "scalatest-funsuite" % "3.2.20" % "test",
   "org.scalatra" %% "scalatra-scalatest-javax" % ScalatraVersion % "test",
-  "org.mockito" % "mockito-core" % "5.23.0" % "test"
+  "org.mockito" % "mockito-core" % "5.24.0" % "test"
 )
 
 // Forked so -Dgitbucket.home is set before gitbucket.core.util.Directory is ever touched,
