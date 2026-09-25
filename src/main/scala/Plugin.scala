@@ -1,3 +1,4 @@
+import java.util.regex.Pattern
 import javax.servlet.ServletContext
 
 import gitbucket.core.plugin.PluginRegistry
@@ -36,8 +37,10 @@ class Plugin extends gitbucket.core.plugin.Plugin {
 
   override def javaScripts(registry: PluginRegistry, context: ServletContext, settings: SystemSettings): Seq[(String, String)] = {
     val path = settings.baseUrl.getOrElse(context.getContextPath)
+    // The request URI includes the context path, so the pattern must be anchored after it (baseUrl can be a full URL)
+    val contextPattern = Pattern.quote(context.getContextPath)
     Seq(
-      "(?!/(?:signin|dashboard|admin)(?:/|$)).+/.+" -> s"""
+      s"$contextPattern(?!/(?:signin|dashboard|admin|groups)(?:/|$$)).+/.+" -> s"""
        |</script>
        |<script>
        |  var link = document.createElement('link');
