@@ -1,9 +1,12 @@
 import javax.servlet.ServletContext
 
+import gitbucket.core.controller.Context
 import gitbucket.core.plugin.PluginRegistry
+import gitbucket.core.service.RepositoryService.RepositoryInfo
 import gitbucket.core.service.SystemSettingsService.SystemSettings
 import io.github.gitbucket.explorer.controllers.ExplorerController
 import io.github.gitbucket.solidbase.model.Version
+import play.twirl.api.Html
 
 /**
   * Created by t_maruyama on 2017/01/31.
@@ -34,21 +37,14 @@ class Plugin extends gitbucket.core.plugin.Plugin {
 
   override val assetsMappings = Seq("/explorer" -> "explorer/assets")
 
-  override def javaScripts(registry: PluginRegistry, context: ServletContext, settings: SystemSettings): Seq[(String, String)] = {
-    val path = settings.baseUrl.getOrElse(context.getContextPath)
-    Seq(
-      ".*/(?!.*(signin|dashboard|admin)).+/.+" -> s"""
-       |</script>
-       |<script>
-       |  var link = document.createElement('link');
-       |  link.setAttribute('rel', 'stylesheet');
-       |  link.setAttribute('type', 'text/css');
-       |  link.setAttribute('href', '$path/plugin-assets/explorer/plugin-explorer.css');
-       |  document.getElementsByTagName('head')[0].appendChild(link);
-       |</script>
-       |<script src="$path/plugin-assets/explorer/bundle.js"></script>
-       |<script>
-       """.stripMargin
-    )
+  // Rendered by the repository layout, which also renders the sidebar the explorer mounts into, so the assets are
+  // only added on pages that have it (no URL matching, hence no context path or reserved name handling needed).
+  override def repositoryHeaders(
+    registry: PluginRegistry,
+    context: ServletContext,
+    settings: SystemSettings
+  ): Seq[(RepositoryInfo, Context) => Option[Html]] = Seq { (_, ctx) =>
+    Some(Html(s"""<link rel="stylesheet" type="text/css" href="${ctx.path}/plugin-assets/explorer/plugin-explorer.css">
+       |<script defer src="${ctx.path}/plugin-assets/explorer/bundle.js"></script>""".stripMargin))
   }
 }
