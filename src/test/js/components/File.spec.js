@@ -1,7 +1,7 @@
 import React from 'react';
 import assert from 'assert';
 import { shallow } from 'enzyme';
-import File from '../../scripts/components/File';
+import File from '../../../main/js/components/File';
 
 describe('File', () => {
   it('renders a link with the given name and url', () => {

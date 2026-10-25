@@ -1,4 +1,4 @@
 {
-  "require": "test/setup.js",
-  "spec": "test/**/*.spec.js"
+  "require": "src/test/js/setup.js",
+  "spec": "src/test/js/**/*.spec.js"
 }

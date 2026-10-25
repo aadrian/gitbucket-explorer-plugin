@@ -1,9 +1,9 @@
 import React from 'react';
 import assert from 'assert';
 import { shallow } from 'enzyme';
-import FileNodes from '../../scripts/components/FileNodes';
-import File from '../../scripts/components/File';
-import Directory from '../../scripts/components/Directory';
+import FileNodes from '../../../main/js/components/FileNodes';
+import File from '../../../main/js/components/File';
+import Directory from '../../../main/js/components/Directory';
 
 describe('FileNodes', () => {
   const data = [

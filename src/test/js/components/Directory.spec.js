@@ -3,7 +3,7 @@ import assert from 'assert';
 import sinon from 'sinon';
 import { shallow } from 'enzyme';
 import request from 'superagent';
-import Directory from '../../scripts/components/Directory';
+import Directory from '../../../main/js/components/Directory';
 
 describe('Directory', () => {
   afterEach(() => {
