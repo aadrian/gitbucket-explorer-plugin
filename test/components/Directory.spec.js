@@ -34,9 +34,11 @@ describe('Directory', () => {
   });
 
   it('collapses without issuing a network call on second toggle', () => {
-    sinon.stub(request, 'get');
+    sinon.stub(request, 'get').returns({ end: () => {} });
     const wrapper = shallow(<Directory name="src" url="/owner/repo/explore/main/src" />);
+    // expanding loads the children, like restoring the expanded flag from localStorage
     wrapper.setState({ expanded: true, children: [{ name: 'x', url: '/x', isDirectory: false }] });
+    request.get.resetHistory();
 
     wrapper.instance().toggleFolder('/owner/repo/explore/main/src');
     wrapper.update();

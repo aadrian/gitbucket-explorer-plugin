@@ -78,3 +78,19 @@ li.active .file-tree {
 .file-node > a:hover {
   opacity: 0.6;
 }
+/* the file or folder shown on the current page */
+.file-tree li.current > a,
+.file-tree li.current > .folder-expander {
+  font-weight: bold;
+}
+.file-tree li.current > a {
+  background-color: #e8f1f8;
+}
+/* collapsed (mini) sidebar: show only the icon, like the core menu items */
+@media (min-width: 768px) {
+  .sidebar-mini.sidebar-collapse .tree-node > .root-expander,
+  .sidebar-mini.sidebar-collapse .tree-node > .file-tree,
+  .sidebar-mini.sidebar-collapse .submenu-files > span {
+    display: none;
+  }
+}
